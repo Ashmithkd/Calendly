@@ -25,4 +25,11 @@ public class UserService {
         user.setPassword(password);
         userRepository.save(user);
     }
+    public void update(User user){
+        userRepository.save(user);
+    }
+
+    public User findUserById(Long id) {
+       return userRepository.findUserById(id);
+    }
 }

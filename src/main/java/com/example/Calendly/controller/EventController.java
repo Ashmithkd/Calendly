@@ -9,10 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -47,13 +44,27 @@ public class EventController {
         User user = userService.findUserByEmail(authentication.getName());
         SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss");
         String currentTime= sdf.format(new Date());
-
         List<ScheduledMeet> scheduledMeets = scheduledMeetService.findAllScheduledMeetsByHost();
         model.addAttribute("scheduledMeets", scheduledMeets);
         model.addAttribute("user", user);
+        model.addAttribute("time",currentTime);
         return "dashboard";
     }
-
+    @GetMapping("/editProfile")
+    public String editProfile(@RequestParam String email, Model model) {
+        User user=userService.findUserByEmail(email);
+        model.addAttribute("user", user);
+        return "editProfile";
+    }
+    @PostMapping("/updateProfile")
+    public String updateProfile(@RequestParam String email,@RequestParam String name,@RequestParam String about, @RequestParam Long id){
+        User user=userService.findUserById(id);
+        user.setAbout(about);
+        user.setName(name);
+        user.setEmail(email);
+        userService.update(user);
+        return "redirect:/dashboard";
+    }
 
     @GetMapping("/create-event")
     public String getCreateEventPage(@RequestParam("eventId") long eventId, Model model) {

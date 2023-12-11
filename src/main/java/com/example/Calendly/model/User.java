@@ -25,6 +25,9 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "about")
+    private String about;
+
     @Column(name = "password")
     private String password;
 
@@ -81,4 +84,13 @@ public class User {
     public void setScheduledMeets(List<ScheduledMeet> scheduledMeets) {
         this.scheduledMeets = scheduledMeets;
     }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
 }

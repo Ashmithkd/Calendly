@@ -41,8 +41,8 @@ background-color:white;
 
 #options{
     display: flex;
-    gap: 12%;
-    margin-right: 5%;
+    gap: 15%;
+    margin-right: 10%;
     margin-top: 20px;
 }
 
@@ -382,6 +382,22 @@ font-size: large;
    margin: 0px 0px 0px 0px;
    margin-bottom: -10px;
   }
+  .editProfile {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.editProfile:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
 
   #headings p{
     font-size: 12px;
@@ -466,8 +482,10 @@ font-size: large;
 
     <div id="options">
         <a class="a" href="/dashboard">Home</a>
-        <!--        <a class="a" href="#">Availibilty</a>-->
-        <!--        <a class="a" href="help.html">Help</a>-->
+        <form th:action="@{/editProfile}">
+            <input type="hidden" name="email" th:value="${user.email}">
+            <button type="submit" class="editProfile">Edit profile</button>
+        </form>
         <form th:action="@{/logout}" method="post">
             <button type="submit" class="a" id="logout-dash">Logout</button>
         </form>
@@ -488,7 +506,7 @@ font-size: large;
 
 <section id="B">
     <div>
-
+        <span th:text="${time}"></span>
     </div>
 
     <div class="main">
