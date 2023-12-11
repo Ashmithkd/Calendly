@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/create-event.css}">
+</head>
+<body>
+
+<section>
+    <div id="setting-header">
+        <a th:href="@{/dashboard}" style="text-decoration: none; border: none; color: blue;">&lt; Dashboard</a>
+        <h1>Event Details</h1>
+    </div>
+    <form id="setting-section" th:action="@{/save-event-details}" >
+        <div>
+            <h4>Event Name</h4>
+            <input type="text" th:name="title" >
+        </div>
+        <div>
+            <h4>Duration</h4>
+            <select id="select-duration"  th:name="duration" >
+                <option value="30">30min</option>
+                <option value="60">60min</option>
+            </select>
+        </div>
+
+        <div>
+            <h4>Location</h4>
+            <select  th:name="location" >
+                <option value="Google meet">Google meet</option>
+                <option value="Zoom">Zoom</option>
+            </select>
+        </div>
+        <div>
+            <h4>Description/Instructions</h4>
+            <textarea name="" id="" cols="70" rows="26" placeholder="Write Something......" th:name="description" ></textarea>
+        </div>
+        <div class="line"></div> <!-- New line to complete the box shape -->
+        <div id="button-section">
+            <a class="cancel-settings" th:href="@{/dashboard}">Cancel</a>
+            <button id="save-button">Save and Close</button>
+        </div>
+    </form>
+    <div class="line"></div> <!-- New line to complete the box shape -->
+</section>
+</body>
+</html>
